@@ -23,7 +23,7 @@ public class ROVER_18 {
 	ScanMap scanMap;
 	int sleepTime;
 	String SERVER_ADDRESS = "localhost";
-	static final int PORT_ADDRESS = 1818;
+	static final int PORT_ADDRESS = 9537;
 
 	public ROVER_18() {
 		// constructor
