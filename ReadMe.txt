@@ -1,6 +1,6 @@
 CS-537 Swarm Rover Projecit
 
-We are making a scanner with following characteristics:
+We are making a harvester/ excavator with following characteristics:
 1)Wheels
 2)Harvestor
 3)Radar_Sensor
