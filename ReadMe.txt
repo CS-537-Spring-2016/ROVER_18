@@ -1,4 +1,4 @@
-CS-537 Swarm Rover Projecit
+CS-537 Swarm Rover Project
 
 We are making a harvester/ excavator with following characteristics:
 1)Wheels
