@@ -61,6 +61,16 @@ public class RoverLocations {
 		roverHash.put(rname, rloc);
 	}
 	
+	public RoverLocations clone(){
+		return new RoverLocations(this.roverHash);
+	}
+	
+	
+	
+	/*
+	 * These are only used for testing and development
+	 */
+	
 	public void loadExampleTestRoverLocations(){
         // place all the rovers into the map in their initial positions
         // TODO - have initial positions loaded from a file instead of hard coded
