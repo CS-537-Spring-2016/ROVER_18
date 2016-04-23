@@ -117,7 +117,9 @@ public class ROVER_18 {
 
 			// ***** do a SCAN *****
 			// System.out.println("ROVER_18 sending SCAN request");
-			this.doScan();
+			// gets the scanMap from the server based on the Rover current
+			// location
+			loadScanMapFromSwarmServer();
 			scanMap.debugPrintMap();
 
 			// MOVING
@@ -125,13 +127,14 @@ public class ROVER_18 {
 			// try moving east 5 block if blocked
 			if (blocked) {
 				for (int i = 0; i < 5; i++) {
-					out.println("MOVE S");
-					// System.out.println("ROVER_00 request move E");
+					out.println("MOVE E");
+					// System.out.println("ROVER_18 request move E");
 					Thread.sleep(1100);
 				}
 				blocked = false;
 				// reverses direction after being blocked
 				goingEast = !goingEast;
+				goingSouth = !goingSouth;
 
 			} else {
 
@@ -147,7 +150,13 @@ public class ROVER_18 {
 							|| scanMapTiles[centerIndex + 1][centerIndex].getTerrain() == Terrain.ROCK
 							|| scanMapTiles[centerIndex + 1][centerIndex].getTerrain() == Terrain.NONE) {
 						blocked = true;
-					} else {
+					}
+
+					else {
+
+						// ----------------------------------gather
+						// mineral-------------------------------------
+
 						// request to server to move
 						out.println("MOVE E");
 						System.out.println("ROVER_18 request move E");
@@ -171,30 +180,63 @@ public class ROVER_18 {
 					}
 
 				}
+				if (goingSouth) {
+
+					// check scanMap to see if path is blocked to the south
+					// (scanMap may be old data by now)
+					if (scanMapTiles[centerIndex][centerIndex + 1].getHasRover()
+							|| scanMapTiles[centerIndex][centerIndex + 1].getTerrain() == Terrain.ROCK
+							|| scanMapTiles[centerIndex][centerIndex + 1].getTerrain() == Terrain.NONE) {
+						blocked = true;
+					} else {
+						// request to server to move
+						out.println("MOVE S");
+						// System.out.println("ROVER_00 request move S");
+					}
+
+				} else {
+					// check scanMap to see if path is blocked to the north
+					// (scanMap may be old data by now)
+					// System.out.println("ROVER_00
+					// scanMapTiles[2][1].getHasRover() " +
+					// scanMapTiles[2][1].getHasRover());
+					// System.out.println("ROVER_00
+					// scanMapTiles[2][1].getTerrain() " +
+					// scanMapTiles[2][1].getTerrain().toString());
+
+					if (scanMapTiles[centerIndex][centerIndex - 1].getHasRover()
+							|| scanMapTiles[centerIndex][centerIndex - 1].getTerrain() == Terrain.ROCK
+							|| scanMapTiles[centerIndex][centerIndex - 1].getTerrain() == Terrain.NONE) {
+						blocked = true;
+					} else {
+						// request to server to move
+						out.println("MOVE N");
+						// System.out.println("ROVER_00 request move N");
+					}
+
+				}
+				// another call for current location
+				out.println("LOC");
+				line = in.readLine();
+				if (line.startsWith("LOC")) {
+					currentLoc = extractLOC(line);
+				}
+
+				System.out.println("ROVER_18 currentLoc after recheck: " + currentLoc);
+				System.out.println("ROVER_18 previousLoc: " + previousLoc);
+
+				// test for stuckness
+				stuck = currentLoc.equals(previousLoc);
+
+				System.out.println("ROVER_18 stuck test " + stuck);
+				System.out.println("ROVER_18 blocked test " + blocked);
+
+				Thread.sleep(sleepTime);
+
+				System.out.println("ROVER_18 ------------ bottom process control --------------");
 
 			}
-			// another call for current location
-			out.println("LOC");
-			line = in.readLine();
-			if (line.startsWith("LOC")) {
-				currentLoc = extractLOC(line);
-			}
-
-			System.out.println("ROVER_18 currentLoc after recheck: " + currentLoc);
-			System.out.println("ROVER_18 previousLoc: " + previousLoc);
-
-			// test for stuckness
-			stuck = currentLoc.equals(previousLoc);
-
-			System.out.println("ROVER_18 stuck test " + stuck);
-			System.out.println("ROVER_18 blocked test " + blocked);
-
-			Thread.sleep(sleepTime);
-
-			System.out.println("ROVER_18 ------------ bottom process control --------------");
-
 		}
-
 	}
 
 	// ################ Support Methods ###########################
@@ -249,9 +291,11 @@ public class ROVER_18 {
 
 	// sends a SCAN request to the server and puts the result in the scanMap
 	// array
-	public void doScan() throws IOException {
+	// sends a SCAN request to the server and puts the result in the scanMap
+	// array
+	public void loadScanMapFromSwarmServer() throws IOException {
 		// System.out.println("ROVER_18 method doScan()");
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		Gson gson = new GsonBuilder().setPrettyPrinting().enableComplexMapKeySerialization().create();
 		out.println("SCAN");
 
 		String jsonScanMapIn = in.readLine(); // grabs the string that was
