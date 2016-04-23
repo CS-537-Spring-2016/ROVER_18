@@ -52,7 +52,7 @@ public class ROVER_99 {
 	/**
 	 * Connects to the server then enters the processing loop.
 	 */
-	private void run() throws IOException, InterruptedException {
+	void run() throws IOException, InterruptedException {
 
 		// Make connection and initialize streams
 		//TODO - need to close this socket
