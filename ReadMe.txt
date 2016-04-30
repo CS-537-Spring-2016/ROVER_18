@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+CS-537 Swarm Rover Project
+=======
 CS-537 Swarm Rover Projecit
+>>>>>>> origin/master
 
 We are making a harvester/ excavator with following characteristics:
 1)Wheels
