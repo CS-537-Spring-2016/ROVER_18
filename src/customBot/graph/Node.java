@@ -191,6 +191,70 @@ public class Node implements Comparable<Node>{
 	public int getShortestDistance() {
 		return shortestDistance;
 	}
+
+
+	/**
+	 * @param x the x to set
+	 */
+	public void setX(int x) {
+		this.x = x;
+	}
+
+
+	/**
+	 * @param y the y to set
+	 */
+	public void setY(int y) {
+		this.y = y;
+	}
+
+
+	/**
+	 * @param terrain the terrain to set
+	 */
+	public void setTerrain(Terrain terrain) {
+		this.terrain = terrain;
+	}
+
+
+	/**
+	 * @param science the science to set
+	 */
+	public void setScience(Science science) {
+		this.science = science;
+	}
+
+
+	/**
+	 * @param hasRover the hasRover to set
+	 */
+	public void setHasRover(boolean hasRover) {
+		this.hasRover = hasRover;
+	}
+
+
+	/**
+	 * @param parent the parent to set
+	 */
+	public void setParent(Node parent) {
+		this.parent = parent;
+	}
+
+
+	/**
+	 * @param destination the destination to set
+	 */
+	public void setDestination(Node destination) {
+		this.destination = destination;
+	}
+
+
+	/**
+	 * @param shortestDistance the shortestDistance to set
+	 */
+	public void setShortestDistance(int shortestDistance) {
+		this.shortestDistance = shortestDistance;
+	}
 	
 	
 	
