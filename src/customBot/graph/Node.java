@@ -7,10 +7,10 @@ import enums.Science;
 import enums.Terrain;
 
 /**
- *Created by takayush on 4/30/2016
+ * Created by takayush on 4/30/2016
  *
  */
-public class Node implements Comparable<Node>{
+public class Node implements Comparable<Node> {
 	private int x;
 	private int y;
 	private Terrain terrain;
@@ -19,49 +19,50 @@ public class Node implements Comparable<Node>{
 	private Node parent;
 	private Node destination;
 	private int shortestDistance;
-	
-	//default constructor
-	public Node(){
-		
+
+	// default constructor
+	public Node() {
+
 	}
-	
-	
-	//constructor with setting the values
-	public Node(int x, int y, Terrain terrain, Science science, boolean hasRover){
+
+	// constructor with setting the values
+	public Node(int x, int y, Terrain terrain, Science science, boolean hasRover) {
 		this.x = x;
 		this.y = y;
 		this.terrain = terrain;
-		this.science=science;
+		this.science = science;
 		this.hasRover = hasRover;
 		this.parent = null;
-		this.destination=null;
-		this.shortestDistance=Integer.MAX_VALUE;
+		this.destination = null;
+		this.shortestDistance = Integer.MAX_VALUE;
 	}
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
-	
-	//copy constructor
-	public Node(Node copy){
-		this.x=copy.getX();
-		this.y=copy.getY();
+
+	// copy constructor
+	public Node(Node copy) {
+		this.x = copy.getX();
+		this.y = copy.getY();
 		this.terrain = copy.getTerrain();
-		this.science=copy.getScience();
-		this.hasRover=copy.isHasRover();
+		this.science = copy.getScience();
+		this.hasRover = copy.isHasRover();
 		this.parent = copy.getParent();
-		this.destination=copy.getDestination();
-		this.shortestDistance=copy.getShortestDistance();
+		this.destination = copy.getDestination();
+		this.shortestDistance = copy.getShortestDistance();
 	}
-	
-	
+
 	@Override
 	public int compareTo(Node otherNode) {
 		// Fix me
 		return 0;
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -79,8 +80,9 @@ public class Node implements Comparable<Node>{
 		return result;
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -117,8 +119,9 @@ public class Node implements Comparable<Node>{
 		return true;
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -128,14 +131,12 @@ public class Node implements Comparable<Node>{
 				+ "]";
 	}
 
-
 	/**
 	 * @return the x
 	 */
 	public int getX() {
 		return x;
 	}
-
 
 	/**
 	 * @return the y
@@ -144,14 +145,12 @@ public class Node implements Comparable<Node>{
 		return y;
 	}
 
-
 	/**
 	 * @return the terrain
 	 */
 	public Terrain getTerrain() {
 		return terrain;
 	}
-
 
 	/**
 	 * @return the science
@@ -160,14 +159,12 @@ public class Node implements Comparable<Node>{
 		return science;
 	}
 
-
 	/**
 	 * @return the hasRover
 	 */
 	public boolean isHasRover() {
 		return hasRover;
 	}
-
 
 	/**
 	 * @return the parent
@@ -176,14 +173,12 @@ public class Node implements Comparable<Node>{
 		return parent;
 	}
 
-
 	/**
 	 * @return the destination
 	 */
 	public Node getDestination() {
 		return destination;
 	}
-
 
 	/**
 	 * @return the shortestDistance
@@ -192,71 +187,76 @@ public class Node implements Comparable<Node>{
 		return shortestDistance;
 	}
 
-
 	/**
-	 * @param x the x to set
+	 * @param x
+	 *            the x to set
 	 */
 	public void setX(int x) {
 		this.x = x;
 	}
 
-
 	/**
-	 * @param y the y to set
+	 * @param y
+	 *            the y to set
 	 */
 	public void setY(int y) {
 		this.y = y;
 	}
 
-
 	/**
-	 * @param terrain the terrain to set
+	 * @param terrain
+	 *            the terrain to set
 	 */
 	public void setTerrain(Terrain terrain) {
 		this.terrain = terrain;
 	}
 
-
 	/**
-	 * @param science the science to set
+	 * @param science
+	 *            the science to set
 	 */
 	public void setScience(Science science) {
 		this.science = science;
 	}
 
-
 	/**
-	 * @param hasRover the hasRover to set
+	 * @param hasRover
+	 *            the hasRover to set
 	 */
 	public void setHasRover(boolean hasRover) {
 		this.hasRover = hasRover;
 	}
 
-
 	/**
-	 * @param parent the parent to set
+	 * @param parent
+	 *            the parent to set
 	 */
 	public void setParent(Node parent) {
 		this.parent = parent;
 	}
 
-
 	/**
-	 * @param destination the destination to set
+	 * @param destination
+	 *            the destination to set
 	 */
 	public void setDestination(Node destination) {
 		this.destination = destination;
 	}
 
-
 	/**
-	 * @param shortestDistance the shortestDistance to set
+	 * @param shortestDistance
+	 *            the shortestDistance to set
 	 */
 	public void setShortestDistance(int shortestDistance) {
 		this.shortestDistance = shortestDistance;
 	}
-	
-	
-	
+
+	// method for search preparation and setting value of shortest distance to
+	// infinity in terms of computer science
+	public void prepareForSearch() {
+		this.parent = null;
+		this.destination = null;
+		this.shortestDistance = Integer.MAX_VALUE;
+	}
 
 }
