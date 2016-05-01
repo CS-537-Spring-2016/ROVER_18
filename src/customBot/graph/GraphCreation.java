@@ -20,6 +20,24 @@ public class GraphCreation {
 	 * to their order; others, like the HashMap class, do not.
 	 * 
 	 */
-	public Map<Node, List<Node>> adjList;
+	public Map<Node, List<Node>> adjascentList;
+
+	/**
+	 * default constructor which assigns Hashmap to map.... There can be 4 type
+	 * of map for example: 1)HashMap,2) TreeMap,3) Hashtable 4)SortedMap but we will use
+	 * HashTable
+	 */
+	public GraphCreation() {
+		this.adjascentList = new HashMap<>();
+	}
+	
+	//copy constructor
+	public GraphCreation(GraphCreation copy){
+		adjascentList  = new HashMap<>();
+		for(Map.Entry<Node, List<Node>> entry : copy.adjascentList.entrySet()){
+			Node node = new Node(entry.getKey());
+		}
+		
+	}
 
 }
