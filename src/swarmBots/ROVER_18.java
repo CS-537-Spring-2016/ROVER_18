@@ -133,7 +133,11 @@ public class ROVER_18 {
 				}
 				blocked = false;
 				// reverses direction after being blocked
-				goingEast = !goingEast;
+				if(currentDir.equals("E")){
+					
+				}else{
+					goingEast=goingEast;
+				}
 				goingSouth = !goingSouth;
 
 			} else {
@@ -144,9 +148,15 @@ public class ROVER_18 {
 				// tile S = y + 1; N = y - 1; E = x + 1; W = x - 1
 
 				if (goingEast) {
+					if (!scanMapTiles[centerIndex][centerIndex].getScience().getSciString().equals("N")) {
+						System.out.println("ROVER_18 request GATHER");
+						out.println("GATHER");
+						
+					}
 					// check scanMap to see if path is blocked to the south
 					// (scanMap may be old data by now)
-					if (scanMapTiles[centerIndex][centerIndex + 1].getHasRover()
+					else if (scanMapTiles[centerIndex +  1][centerIndex].getHasRover()
+							|| scanMapTiles[centerIndex + 1][centerIndex].getTerrain() == Terrain.SAND
 							|| scanMapTiles[centerIndex + 1][centerIndex].getTerrain() == Terrain.ROCK
 							|| scanMapTiles[centerIndex + 1][centerIndex].getTerrain() == Terrain.NONE) {
 						blocked = true;
@@ -169,7 +179,8 @@ public class ROVER_18 {
 					System.out.println(
 							"ROVER_18 scanMapTiles[2][1].getTerrain() " + scanMapTiles[2][1].getTerrain().toString());
 
-					if (scanMapTiles[centerIndex][centerIndex - 1].getHasRover()
+					if (scanMapTiles[centerIndex -1 ][centerIndex].getHasRover()
+							|| scanMapTiles[centerIndex -1][centerIndex].getTerrain() == Terrain.SAND
 							|| scanMapTiles[centerIndex - 1][centerIndex].getTerrain() == Terrain.ROCK
 							|| scanMapTiles[centerIndex - 1][centerIndex].getTerrain() == Terrain.NONE) {
 						blocked = true;
@@ -181,10 +192,16 @@ public class ROVER_18 {
 
 				}
 				if (goingSouth) {
-
+					
+					if (!scanMapTiles[centerIndex][centerIndex].getScience().getSciString().equals("N")) {
+						System.out.println("ROVER_18 request GATHER");
+						out.println("GATHER");
+						
+					}
 					// check scanMap to see if path is blocked to the south
 					// (scanMap may be old data by now)
-					if (scanMapTiles[centerIndex][centerIndex + 1].getHasRover()
+					else if (scanMapTiles[centerIndex][centerIndex + 1].getHasRover()
+							|| scanMapTiles[centerIndex][centerIndex +1].getTerrain() == Terrain.SAND
 							|| scanMapTiles[centerIndex][centerIndex + 1].getTerrain() == Terrain.ROCK
 							|| scanMapTiles[centerIndex][centerIndex + 1].getTerrain() == Terrain.NONE) {
 						blocked = true;
@@ -205,6 +222,7 @@ public class ROVER_18 {
 					// scanMapTiles[2][1].getTerrain().toString());
 
 					if (scanMapTiles[centerIndex][centerIndex - 1].getHasRover()
+							|| scanMapTiles[centerIndex ][centerIndex -1 ].getTerrain() == Terrain.SAND
 							|| scanMapTiles[centerIndex][centerIndex - 1].getTerrain() == Terrain.ROCK
 							|| scanMapTiles[centerIndex][centerIndex - 1].getTerrain() == Terrain.NONE) {
 						blocked = true;
@@ -239,6 +257,7 @@ public class ROVER_18 {
 		}
 	}
 
+	
 	// ################ Support Methods ###########################
 
 	private void clearReadLineBuffer() throws IOException {

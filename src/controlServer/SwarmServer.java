@@ -57,11 +57,11 @@ public class SwarmServer {
     private static int mapHeight = 0;
     private static PlanetMap planetMap = null; // = new PlanetMap(mapWidth, mapHeight); 
     private static RoverLocations roverLocations = new RoverLocations();
-    private static ScienceLocations scienceLocations = new ScienceLocations();
+    private static ScienceLocations scienceLocations = new ScienceLocations();//sciencelocation object
     private static ArrayList<Science> collectedScience_0 = new ArrayList<Science>();
     private static ArrayList<Science> collectedScience_1 = new ArrayList<Science>();
     private static ArrayList<Science> collectedScience_2 = new ArrayList<Science>();
-    private static ArrayList<ArrayList<Science>> corpCollectedScience = new ArrayList<ArrayList<Science>>();
+    private static ArrayList<ArrayList<Science>> corpCollectedScience = new ArrayList<ArrayList<Science>>();//total collected science for the corp
     
     private static long countdownTimer;
     private static boolean roversAreGO;
