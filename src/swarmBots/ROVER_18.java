@@ -349,12 +349,12 @@ public class ROVER_18 {
 		if (cardinals[1]) {
 			// Checks to see if there is science on current tile, if not
 			// it moves East
-			System.out.println("ROVER_12: scanMapTiles[centerIndex][centerIndex].getScience().getSciString() "
+			System.out.println("ROVER_18: scanMapTiles[centerIndex][centerIndex].getScience().getSciString() "
 					+ scanMapTiles[centerIndex][centerIndex].getScience().getSciString());
 			if (scanMapTiles[centerIndex + 1][centerIndex].getScience().equals("C")) {
 				// move east
 				out.println("MOVE E");
-				System.out.println("ROVER_12 request move E");
+				System.out.println("ROVER_18 request move E");
 				cardinals[0] = false; // S
 				cardinals[1] = true; // E
 				cardinals[2] = false; // N
@@ -363,7 +363,7 @@ public class ROVER_18 {
 			} else if (scanMapTiles[centerIndex][centerIndex + 1].getScience().equals("C")) {
 				// move south
 				out.println("MOVE S");
-				System.out.println("ROVER_12 request move S");
+				System.out.println("ROVER_18 request move S");
 				cardinals[0] = true; // S
 				cardinals[1] = false; // E
 				cardinals[2] = false; // N
@@ -372,7 +372,7 @@ public class ROVER_18 {
 			} else if (scanMapTiles[centerIndex][centerIndex - 1].getScience().equals("C")) {
 				// move north
 				out.println("MOVE N");
-				System.out.println("ROVER_12 request move N");
+				System.out.println("ROVER_18 request move N");
 				cardinals[0] = false; // S
 				cardinals[1] = false; // E
 				cardinals[2] = true; // N
@@ -397,14 +397,14 @@ public class ROVER_18 {
 								|| scanMapTiles[centerIndex][centerIndex - 1].getTerrain() == Terrain.FLUID
 								|| scanMapTiles[centerIndex][centerIndex - 1].getTerrain() == Terrain.SAND) {
 							out.println("MOVE W");
-							System.out.println("ROVER_12 request move W");
+							System.out.println("ROVER_18 request move W");
 							cardinals[0] = false; // S
 							cardinals[1] = false; // E
 							cardinals[2] = false; // N
 							cardinals[3] = true; // W
 						} else {
 							out.println("MOVE N");
-							System.out.println("ROVER_12 request move N");
+							System.out.println("ROVER_18 request move N");
 							cardinals[0] = false; // S
 							cardinals[1] = false; // E
 							cardinals[2] = true; // N
@@ -412,7 +412,7 @@ public class ROVER_18 {
 						}
 					} else {
 						out.println("MOVE S");
-						System.out.println("ROVER_12 request move S");
+						System.out.println("ROVER_18 request move S");
 						cardinals[0] = true; // S
 						cardinals[1] = false; // E
 						cardinals[2] = false; // N
@@ -422,7 +422,7 @@ public class ROVER_18 {
 				// when no obstacle is in next move to east
 				else {
 					out.println("MOVE E");
-					System.out.println("ROVER_12 request move E");
+					System.out.println("ROVER_18 request move E");
 					cardinals[0] = false; // S
 					cardinals[1] = true; // E
 					cardinals[2] = false; // N
@@ -449,14 +449,14 @@ public class ROVER_18 {
 							|| scanMapTiles[centerIndex][centerIndex - 1].getTerrain() == Terrain.FLUID
 							|| scanMapTiles[centerIndex][centerIndex - 1].getTerrain() == Terrain.SAND) {
 						out.println("E");
-						System.out.println("ROVER_12 request move E");
+						System.out.println("ROVER_18 request move E");
 						cardinals[0] = false; // S
 						cardinals[1] = true; // E
 						cardinals[2] = false; // N
 						cardinals[3] = false; // W
 					} else {
 						out.println("MOVE N");
-						System.out.println("ROVER_12 request move N");
+						System.out.println("ROVER_18 request move N");
 						cardinals[0] = false; // S
 						cardinals[1] = false; // E
 						cardinals[2] = true; // N
@@ -464,7 +464,7 @@ public class ROVER_18 {
 					}
 				} else {
 					out.println("MOVE S");
-					System.out.println("ROVER_12 request move S");
+					System.out.println("ROVER_18 request move S");
 					cardinals[0] = true; // S
 					cardinals[1] = false; // E
 					cardinals[2] = false; // N
@@ -474,7 +474,7 @@ public class ROVER_18 {
 			// when no obstacle is in next move to west
 			else {
 				out.println("MOVE W");
-				System.out.println("ROVER_12 request move W");
+				System.out.println("ROVER_18 request move W");
 				cardinals[0] = false; // S
 				cardinals[1] = false; // E
 				cardinals[2] = false; // N
@@ -502,14 +502,14 @@ public class ROVER_18 {
 							|| scanMapTiles[centerIndex + 1][centerIndex].getTerrain() == Terrain.FLUID
 							|| scanMapTiles[centerIndex + 1][centerIndex].getTerrain() == Terrain.SAND) {
 						out.println("MOVE N");
-						System.out.println("ROVER_12 request move N");
+						System.out.println("ROVER_18 request move N");
 						cardinals[0] = false; // S
 						cardinals[1] = false; // E
 						cardinals[2] = true; // N
 						cardinals[3] = false; // W
 					} else {
 						out.println("MOVE E");
-						System.out.println("ROVER_12 request move E");
+						System.out.println("ROVER_18 request move E");
 						cardinals[0] = false; // S
 						cardinals[1] = true; // E
 						cardinals[2] = false; // N
@@ -517,7 +517,7 @@ public class ROVER_18 {
 					}
 				} else {
 					out.println("MOVE W");
-					System.out.println("ROVER_12 request move W");
+					System.out.println("ROVER_18 request move W");
 					cardinals[0] = false; // S
 					cardinals[1] = false; // E
 					cardinals[2] = false; // N
@@ -527,7 +527,7 @@ public class ROVER_18 {
 			// when no obstacle is in next move to south
 			else {
 				out.println("MOVE S");
-				System.out.println("ROVER_12 request move S");
+				System.out.println("ROVER_18 request move S");
 				cardinals[0] = true; // S
 				cardinals[1] = false; // E
 				cardinals[2] = false; // N
@@ -555,14 +555,14 @@ public class ROVER_18 {
 							|| scanMapTiles[centerIndex + 1][centerIndex].getTerrain() == Terrain.FLUID
 							|| scanMapTiles[centerIndex + 1][centerIndex].getTerrain() == Terrain.SAND) {
 						out.println("MOVE S");
-						System.out.println("ROVER_12 request move S");
+						System.out.println("ROVER_18 request move S");
 						cardinals[0] = true; // S
 						cardinals[1] = false; // E
 						cardinals[2] = false; // N
 						cardinals[3] = false; // W
 					} else {
 						out.println("MOVE E");
-						System.out.println("ROVER_12 request move E");
+						System.out.println("ROVER_18 request move E");
 						cardinals[0] = false; // S
 						cardinals[1] = true; // E
 						cardinals[2] = false; // N
@@ -570,7 +570,7 @@ public class ROVER_18 {
 					}
 				} else {
 					out.println("MOVE W");
-					System.out.println("ROVER_12 request move W");
+					System.out.println("ROVER_18 request move W");
 					cardinals[0] = false; // S
 					cardinals[1] = false; // E
 					cardinals[2] = false; // N
@@ -580,7 +580,7 @@ public class ROVER_18 {
 			// when no obstacle is in next move to north
 			else {
 				out.println("MOVE N");
-				System.out.println("ROVER_12 request move N");
+				System.out.println("ROVER_18 request move N");
 				cardinals[0] = false; // S
 				cardinals[1] = false; // E
 				cardinals[2] = true; // N
@@ -589,6 +589,10 @@ public class ROVER_18 {
 		}
 	}
 
+	
+	
+	
+	
 	/**
 	 * Runs the client
 	 */
