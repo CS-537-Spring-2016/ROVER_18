@@ -342,16 +342,27 @@ public class ROVER_18 {
 		return null;
 	}
 
+	// gather science method
+	public void gatherScience(boolean[] cardinals, MapTile[][] scanMapTiles, int centerIndex) {
+		System.out.println("ROVER_18: scanMapTiles[centerIndex][centerIndex].getScience().getSciString() "
+				+ scanMapTiles[centerIndex][centerIndex].getScience().getSciString());
+		if (!scanMapTiles[centerIndex][centerIndex].getScience().getSciString().equals("N")) {
+			System.out.println("ROVER_18 request GATHER");
+			out.println("GATHER");
+		}
+	}
+
 	// moving method
 	private void roverMoving(boolean[] cardinals, MapTile[][] scanMapTiles, int centerIndex) {
 
 		// logic if going in east
+	
 		if (cardinals[1]) {
 			// Checks to see if there is science on current tile, if not
 			// it moves East
 			System.out.println("ROVER_18: scanMapTiles[centerIndex][centerIndex].getScience().getSciString() "
 					+ scanMapTiles[centerIndex][centerIndex].getScience().getSciString());
-			if (scanMapTiles[centerIndex + 1][centerIndex].getScience().equals("C")) {
+			if (scanMapTiles[centerIndex + 1][centerIndex].getScience().equals("N")) {
 				// move east
 				out.println("MOVE E");
 				System.out.println("ROVER_18 request move E");
@@ -360,7 +371,7 @@ public class ROVER_18 {
 				cardinals[2] = false; // N
 				cardinals[3] = false; // W
 
-			} else if (scanMapTiles[centerIndex][centerIndex + 1].getScience().equals("C")) {
+			} else if (scanMapTiles[centerIndex][centerIndex + 1].getScience().equals("N")) {
 				// move south
 				out.println("MOVE S");
 				System.out.println("ROVER_18 request move S");
@@ -369,7 +380,7 @@ public class ROVER_18 {
 				cardinals[2] = false; // N
 				cardinals[3] = false; // W
 
-			} else if (scanMapTiles[centerIndex][centerIndex - 1].getScience().equals("C")) {
+			} else if (scanMapTiles[centerIndex][centerIndex - 1].getScience().equals("N")) {
 				// move north
 				out.println("MOVE N");
 				System.out.println("ROVER_18 request move N");
@@ -589,10 +600,6 @@ public class ROVER_18 {
 		}
 	}
 
-	
-	
-	
-	
 	/**
 	 * Runs the client
 	 */
