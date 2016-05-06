@@ -1,11 +1,14 @@
 package swarmBots;
 
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -253,11 +256,22 @@ public class ROVER_18 {
 		// System.out.println("ROVER_18 method getEquipment()");
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		out.println("EQUIPMENT");
-
+		
+		// Collection Starts here. A String collection named logs is added which scans the entire json and stores it as a collection
+		Collection<String> logs = null;
 		String jsonEqListIn = in.readLine(); // grabs the string that was
 												// returned first
 		if (jsonEqListIn == null) {
 			jsonEqListIn = "";
+		}
+		
+		else{
+			    if (jsonEqListIn != null) {
+			        BufferedReader br = new BufferedReader(new FileReader(jsonEqListIn));
+			        logs = gson.fromJson(br, new TypeToken<List<String>>(){}.getType()); // line 6
+			        // logs.add(log);
+			        // serialize "logs" again
+			    }
 		}
 		StringBuilder jsonEqList = new StringBuilder();
 		// System.out.println("ROVER_18 incomming EQUIPMENT result - first
