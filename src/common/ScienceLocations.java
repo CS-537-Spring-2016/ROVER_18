@@ -83,7 +83,9 @@ public class ScienceLocations {
 			scienceHash.put(new Coord(19,3), Science.MINERAL);
 			scienceHash.put(new Coord(12,24), Science.ORGANIC);
 		}
-		
+		public HashMap<Coord, Science> gethashmap(){
+			return scienceHash;
+		}
 		public void loadSmallExampleTestScienceLocations(){
 			// put some sample science in the world
 			scienceHash.put(new Coord(20,20), Science.RADIOACTIVE);
