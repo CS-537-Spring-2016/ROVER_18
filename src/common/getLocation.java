@@ -11,22 +11,31 @@ import enums.Science;
 import supportTools.SwarmMapInit;
 
 public class getLocation {
-  // get locations
 	 private static RoverLocations roverLocations = new RoverLocations();
 	 private static ScienceLocations scienceLocations = new ScienceLocations();
 	 private static SwarmMapInit mapInit = new SwarmMapInit();
-	 // input map
-	 private static String mapFileName = "";
-	 public getLocation() throws IOException {
+	 private static String mapFileName = "Map50x50map2.txt";
+	public getLocation() throws IOException {
 		
 		 mapInit.parseInputFromDisplayTextFile(mapFileName); 
 		 scienceLocations = mapInit.getScienceLocations();
 	}
-	// minerals position collector 
-	public ArrayList<String> listMinerals() 
-	{
+	// get positions of minerals(X,Y positions)
+	public ArrayList<Coord> listMinerals() {
+		
 		ArrayList<Coord> sci = new ArrayList<>();
-		return null;		
+		Coord list;
+		scienceLocations.loadExampleTestScienceLocations();
+		
+		for (Map.Entry<Coord, Science> e : scienceLocations.gethashmap().entrySet()) {
+			try {			
+				list=e.getKey();
+				sci.add(list);
+			} catch (Exception e2) {
+				System.out.println(e2);
+			}
+		}
+		return sci;		
 	}
 	
 
