@@ -24,6 +24,10 @@ public class ScienceLocations {
 			scienceHash.put(new Coord(19,3), Science.MINERAL);
 			scienceHash.put(new Coord(12,24), Science.ORGANIC);
 		}
+		//get list
+		public HashMap<Coord, Science> gethashmap() {			
+			return scienceHash;
+		}
 		
 		public ScienceLocations(HashMap<Coord, Science> sciHash){
 			scienceHash = (HashMap<Coord, Science>) sciHash.clone();
