@@ -295,6 +295,12 @@ public class ROVER_18 {
 
 		return returnList;
 	}
+	//Make connection with server to get science locations
+	public ArrayList<Coord> getPositions()
+	{
+		ArrayList<Coord> loc = new ArrayList<>();
+		return loc;
+	}
 
 	// sends a SCAN request to the server and puts the result in the scanMap
 	// array
