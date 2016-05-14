@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Random;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -32,7 +33,7 @@ public class ROVER_18 {
 		rovername = "ROVER_18";
 		SERVER_ADDRESS = "localhost";
 		// this should be a safe but slow timer value
-		sleepTime = 100; // in milliseconds - smaller is faster, but the server
+		sleepTime = 50; // in milliseconds - smaller is faster, but the server
 							// will cut connection if it is too small
 	}
 
@@ -351,7 +352,7 @@ public class ROVER_18 {
 			out.println("GATHER");
 		}
 	}
-
+	
 	// moving method
 	private void roverMoving(boolean[] cardinals, MapTile[][] scanMapTiles, int centerIndex) {
 
@@ -362,6 +363,10 @@ public class ROVER_18 {
 			// it moves East
 			System.out.println("ROVER_18: scanMapTiles[centerIndex][centerIndex].getScience().getSciString() "
 					+ scanMapTiles[centerIndex][centerIndex].getScience().getSciString());
+			if (!scanMapTiles[centerIndex][centerIndex].getScience().getSciString().equals("N")) {
+				System.out.println("ROVER_18 request GATHER");
+				out.println("GATHER");
+			}
 			if (scanMapTiles[centerIndex + 1][centerIndex].getScience().equals("N")) {
 				// move east
 				out.println("MOVE E");
@@ -407,13 +412,17 @@ public class ROVER_18 {
 								|| scanMapTiles[centerIndex][centerIndex - 1].getTerrain() == Terrain.NONE
 								|| scanMapTiles[centerIndex][centerIndex - 1].getTerrain() == Terrain.FLUID
 								|| scanMapTiles[centerIndex][centerIndex - 1].getTerrain() == Terrain.SAND) {
-							out.println("MOVE W");
-							System.out.println("ROVER_18 request move W");
+							out.println("MOVE N");
+							System.out.println("ROVER_18 request move N");
 							cardinals[0] = false; // S
 							cardinals[1] = false; // E
 							cardinals[2] = false; // N
 							cardinals[3] = true; // W
 						} else {
+							String[] l={"W","N"};
+							Random rn =new Random();
+							int answer = rn.nextInt(4);
+							//
 							out.println("MOVE N");
 							System.out.println("ROVER_18 request move N");
 							cardinals[0] = false; // S
@@ -432,6 +441,7 @@ public class ROVER_18 {
 				}
 				// when no obstacle is in next move to east
 				else {
+					
 					out.println("MOVE E");
 					System.out.println("ROVER_18 request move E");
 					cardinals[0] = false; // S
@@ -441,6 +451,10 @@ public class ROVER_18 {
 				}
 			}
 		} else if (cardinals[3]) {
+			if (!scanMapTiles[centerIndex][centerIndex].getScience().getSciString().equals("N")) {
+				System.out.println("ROVER_18 request GATHER");
+				out.println("GATHER");
+			}
 			// if next move to west is an obstacle
 			if (scanMapTiles[centerIndex - 1][centerIndex].getHasRover()
 					|| scanMapTiles[centerIndex - 1][centerIndex].getTerrain() == Terrain.ROCK
@@ -466,7 +480,10 @@ public class ROVER_18 {
 						cardinals[2] = false; // N
 						cardinals[3] = false; // W
 					} else {
-						out.println("MOVE N");
+						String[] l={"E","S","N"};
+						Random rn =new Random();
+						int answer = rn.nextInt(3);
+						out.println("MOVE E");
 						System.out.println("ROVER_18 request move N");
 						cardinals[0] = false; // S
 						cardinals[1] = false; // E
@@ -492,6 +509,10 @@ public class ROVER_18 {
 				cardinals[3] = true; // W
 			}
 		} else if (cardinals[0]) {
+			if (!scanMapTiles[centerIndex][centerIndex].getScience().getSciString().equals("N")) {
+				System.out.println("ROVER_18 request GATHER");
+				out.println("GATHER");
+			}
 
 			// check whether south is obstacle
 			if (scanMapTiles[centerIndex][centerIndex + 1].getHasRover()
@@ -545,6 +566,10 @@ public class ROVER_18 {
 				cardinals[3] = false; // W
 			}
 		} else if (cardinals[2]) {
+			if (!scanMapTiles[centerIndex][centerIndex].getScience().getSciString().equals("N")) {
+				System.out.println("ROVER_18 request GATHER");
+				out.println("GATHER");
+			}
 
 			// check whether north is obstacle
 			if (scanMapTiles[centerIndex][centerIndex - 1].getHasRover()
