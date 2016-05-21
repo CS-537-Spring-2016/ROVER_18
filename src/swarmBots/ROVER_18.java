@@ -158,6 +158,10 @@ public class ROVER_18 {
 		}
 
 	}
+	private void astarAlgo()
+	{
+		// to reach destination with shortest path
+	}
 
 	private void setCurrentLoc() throws IOException {
 
